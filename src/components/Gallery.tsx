@@ -10,25 +10,26 @@ const images = [
 
 export const Gallery: React.FC = () => {
   return (
-    <section className="section-padding" style={{ backgroundColor: 'var(--color-cream)' }}>
+    <section className="section-padding" style={{ backgroundColor: 'transparent' }}>
       <div className="container">
-        <div className="text-center" style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>Moments Along The Way</h2>
+        <div className="text-center" style={{ marginBottom: '5rem' }}>
+          <div className="uppercase-label" style={{ marginBottom: '1.5rem' }}>Gallery</div>
+          <h2 className="title-secondary">Moments Along The Way</h2>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', padding: '0 1rem' }}>
           {images.map((src, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: idx * 0.1 }}
-              style={{ overflow: 'hidden', aspectRatio: idx % 2 === 0 ? '3/4' : '4/5' }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              style={{ overflow: 'hidden', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', aspectRatio: idx % 3 === 0 ? '4/5' : '1/1', marginTop: idx % 2 === 1 ? '3rem' : '0' }}
             >
               <motion.img 
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6 }}
+                whileHover={{ scale: 1.08 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 src={src} 
                 alt={`Gallery ${idx + 1}`} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}

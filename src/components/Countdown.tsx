@@ -31,10 +31,12 @@ export const Countdown: React.FC = () => {
   }, []);
 
   return (
-    <section className="section-padding" style={{ backgroundColor: 'var(--color-burgundy-dark)', color: 'var(--color-ivory)' }}>
-      <div className="container text-center">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '3rem', color: 'var(--color-gold)' }}>Counting Down to Forever</h2>
+    <section className="section-padding" style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-ivory)', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(212,175,55,0.1) 0%, transparent 70%)', zIndex: 0 }} />
+      <div className="container text-center" style={{ position: 'relative', zIndex: 1 }}>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }}>
+          <h2 className="title-secondary" style={{ color: 'var(--color-gold-light)' }}>Counting Down to Forever</h2>
+          <div className="gold-divider" style={{ background: 'linear-gradient(90deg, transparent, var(--color-gold-light), transparent)', marginBottom: '4rem' }} />
           
           <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
             {[
@@ -43,14 +45,19 @@ export const Countdown: React.FC = () => {
               { label: 'Minutes', value: timeLeft.minutes },
               { label: 'Seconds', value: timeLeft.seconds }
             ].map((unit, idx) => (
-              <div key={idx} style={{ textAlign: 'center', minWidth: '80px' }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '3.5rem', lineHeight: 1 }}>
+              <motion.div 
+                key={idx} 
+                className="glass-panel"
+                whileHover={{ y: -5 }}
+                style={{ textAlign: 'center', minWidth: '140px', backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(212,175,55,0.3)', padding: '2rem 1rem' }}
+              >
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '4rem', lineHeight: 1, color: 'var(--color-ivory)', textShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
                   {String(unit.value).padStart(2, '0')}
                 </div>
-                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginTop: '0.5rem', opacity: 0.8 }}>
+                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.2em', marginTop: '1rem', color: 'var(--color-gold-light)' }}>
                   {unit.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
