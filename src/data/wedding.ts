@@ -1,7 +1,7 @@
 export const wedding = {
   couple: {
-    firstName: "Emma",
-    secondName: "Daniel",
+    firstName: "Yassin",
+    secondName: "Laila",
   },
 
   date: "2026-09-20",
